@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#008cff">
 
-    <title>ZUNADAM MOD - Zunadam</title>
+    <!-- Đã sửa thẻ title giống như ảnh của bạn nhưng là Zunadam -->
+    <title>Hello Zunadam</title>
 
     <meta name="description"
-          content="ZUNADAM MOD - Website giới thiệu ứng dụng, trò chơi và liên kết tải xuống.">
+          content="Zunadam Mod - Website giới thiệu ứng dụng, trò chơi và liên kết tải xuống.">
     <meta name="author" content="ZUNADAM">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="ZUNADAM MOD">
+    <meta property="og:title" content="Zunadam Mod">
     <meta property="og:description"
-          content="Chào mừng bạn đến với website ZUNADAM MOD.">
+          content="Chào mừng bạn đến với website Zunadam Mod.">
     <meta property="og:image" content="avatar.png">
 
-    <!-- Favicon hình tròn có viền kiểu ChatGPT -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23f7f7f7' stroke='%23d0d0d0' stroke-width='4'/><clipPath id='cp'><circle cx='50' cy='50' r='46'/></clipPath><image href='avatar.png' width='100' height='100' clip-path='url(%23cp)' preserveAspectRatio='xMidYMid slice'/></svg>">
+    <!-- Favicon hình vuông -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='8' fill='%23111111' stroke='%23333333' stroke-width='4'/><clipPath id='cp'><rect x='4' y='4' width='92' height='92' rx='6'/></clipPath><image href='avatar.png' width='100' height='100' clip-path='url(%23cp)' preserveAspectRatio='xMidYMid slice'/></svg>">
 
     <style>
         /* =========================================
@@ -75,7 +76,7 @@
         }
 
         /* =========================================
-           3. MÀN HÌNH LOADING
+           3. MÀN HÌNH LOADING TRÒN
         ========================================= */
         #loadingScreen {
             position: fixed;
@@ -85,7 +86,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background: radial-gradient(circle at center, #064475 0%, #02182d 48%, #01060d 100%);
+            background: #02050b;
             transition: opacity 0.7s ease, visibility 0.7s ease;
         }
 
@@ -99,72 +100,77 @@
             width: 100%;
             max-width: 420px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .loading-avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
         }
 
         .loading-avatar {
-            display: block;
-            width: 95px;
-            height: 95px;
-            margin: 0 auto 22px;
-            border: 3px solid var(--light-blue);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
             background: #05223b;
-            box-shadow: 0 0 22px var(--blue), 0 0 50px rgba(0, 140, 255, 0.35);
+        }
+
+        .loading-ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .loading-ring circle {
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+        }
+
+        .ring-bg {
+            stroke: rgba(255, 255, 255, 0.1);
+        }
+
+        .ring-progress {
+            stroke: #39d5ff;
+            stroke-dasharray: 339;
+            stroke-dashoffset: 339;
+            transition: stroke-dashoffset 0.08s linear;
         }
 
         .loading-title {
-            margin-bottom: 10px;
-            color: white;
-            font-size: clamp(25px, 6vw, 36px);
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-shadow: 0 0 20px var(--blue);
+            margin-bottom: 8px;
+            color: #ffffff;
+            font-size: clamp(24px, 5vw, 32px);
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
         .loading-subtitle {
-            margin-bottom: 28px;
-            color: #b4dcf7;
-            font-size: 12px;
-            letter-spacing: 2px;
+            color: #8b8da3;
+            font-size: 14px;
         }
 
-        .loading-track {
-            width: 100%;
-            height: 13px;
-            overflow: hidden;
-            border: 1px solid rgba(57, 213, 255, 0.65);
-            border-radius: 20px;
-            background: rgba(0, 0, 0, 0.55);
+        .loading-bar-bottom {
+            width: 50px;
+            height: 3px;
+            background: #444857;
+            border-radius: 2px;
+            margin: 25px auto 0;
         }
 
-        #loadingBar {
-            width: 0%;
-            height: 100%;
-            border-radius: inherit;
-            background: linear-gradient(90deg, #0066ff, #00cfff, #ffffff);
-            box-shadow: 0 0 15px var(--light-blue);
-            transition: width 0.06s linear;
-        }
-
-        .loading-information {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            margin-top: 13px;
-            color: #d5efff;
-            font-size: 13px;
-        }
-
-        #loadingPercent {
-            color: var(--light-blue);
-            font-weight: 900;
-        }
-
-        .loading-note {
-            margin-top: 22px;
-            color: #8db7d5;
-            font-size: 12px;
+        .loading-track, .loading-information, .loading-note {
+            display: none;
         }
 
         /* =========================================
@@ -492,20 +498,19 @@
     <!-- MƯA XANH -->
     <canvas id="rainCanvas"></canvas>
 
-    <!-- LOADING -->
+    <!-- LOADING VÒNG TRÒN -->
     <div id="loadingScreen">
         <div class="loading-content">
-            <img src="avatar.png" alt="Logo ZUNADAM" class="loading-avatar" onerror="this.style.display='none'">
-            <h1 class="loading-title">ZUNADAM MOD</h1>
-            <p class="loading-subtitle">WEBSITE ĐANG KHỞI ĐỘNG</p>
-            <div class="loading-track" id="loadingProgress">
-                <div id="loadingBar"></div>
+            <div class="loading-avatar-container">
+                <svg class="loading-ring" viewBox="0 0 120 120">
+                    <circle class="ring-bg" cx="60" cy="60" r="54"></circle>
+                    <circle class="ring-progress" id="ringProgress" cx="60" cy="60" r="54"></circle>
+                </svg>
+                <img src="avatar.png" alt="Logo Zunadam" class="loading-avatar" onerror="this.style.display='none'">
             </div>
-            <div class="loading-information">
-                <span id="loadingStatus">Đang chuẩn bị...</span>
-                <span id="loadingPercent">0%</span>
-            </div>
-            <p class="loading-note">Vui lòng đợi trong giây lát</p>
+            <h1 class="loading-title">Zunadam Mod</h1>
+            <p class="loading-subtitle" id="loadingStatus">Đang khởi động...</p>
+            <div class="loading-bar-bottom"></div>
         </div>
     </div>
 
@@ -538,7 +543,7 @@
                 </div>
                 <h1>XIN CHÀO, <span>ZUNADAM</span></h1>
                 <p class="profile-description">
-                    Chào mừng bạn đến với website ZUNADAM MOD. Tại đây bạn có thể tìm thấy các mục ứng dụng, trò chơi và liên kết tải xuống.
+                    Chào mừng bạn đến với website Zunadam Mod. Tại đây bạn có thể tìm thấy các mục ứng dụng, trò chơi và liên kết tải xuống.
                 </p>
             </section>
 
@@ -561,7 +566,7 @@
                             </div>
                         </div>
                         <p class="card-description">Mở liên kết Roblox mà bạn đã cung cấp.</p>
-                        <a class="download-button" href="https://ipas.cc/29k5j8" target="_blank" rel="noopener noreferrer">MỞ LIÊN KẾT</a>
+                        <a class="download-button" href="https://ipas.cc/qd9jgy" target="_blank" rel="noopener noreferrer">MỞ LIÊN KẾT</a>
                     </article>
 
                     <!-- AVO ESP -->
@@ -655,29 +660,28 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        /* Loading */
+        /* Loading Vòng Tròn */
         let progress = 0;
-        const loadingBar = document.getElementById('loadingBar');
-        const loadingPercent = document.getElementById('loadingPercent');
+        const ringProgress = document.getElementById('ringProgress');
         const loadingStatus = document.getElementById('loadingStatus');
         const loadingScreen = document.getElementById('loadingScreen');
         const mainContent = document.getElementById('mainContent');
+        const circumference = 2 * Math.PI * 54;
 
         const interval = setInterval(() => {
             progress += Math.floor(Math.random() * 8) + 2;
             if (progress >= 100) {
                 progress = 100;
                 clearInterval(interval);
-                loadingBar.style.width = '100%';
-                loadingPercent.textContent = '100%';
+                ringProgress.style.strokeDashoffset = 0;
                 loadingStatus.textContent = 'Hoàn tất!';
                 setTimeout(() => {
                     loadingScreen.classList.add('finished');
                     mainContent.classList.add('visible');
                 }, 400);
             } else {
-                loadingBar.style.width = progress + '%';
-                loadingPercent.textContent = progress + '%';
+                let offset = circumference - (progress / 100) * circumference;
+                ringProgress.style.strokeDashoffset = offset;
                 if (progress > 60) loadingStatus.textContent = 'Đang tải dữ liệu...';
                 else if (progress > 30) loadingStatus.textContent = 'Đang kết nối...';
             }
